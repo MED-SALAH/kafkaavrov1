@@ -25,7 +25,8 @@ public class KafkaAvroProducerv1 {
 
         EventHeader eventHeader = EventHeader.newBuilder()
                 .setEventId("000012")
-                .setHeaderVersion("v1").setDateTimeRef(1345234020)
+                .setHeaderVersion("v1")
+                .setDateTimeRef(1345234020)
                 .setNomenclatureEv("Code Nomenclature de l'événement")
                 .setSchemaVersion("version")
                 .setServeur("serveur")
