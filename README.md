@@ -8,4 +8,4 @@ Message to Send :
 
 Commande line Consummer kafka Avro :
 
-kafka-avro-console-consumer --topic test2 --zookeeper 35.180.127.210:2181 --from-beginning
+kafka-avro-console-consumer --topic test2 --bootstrap-server 35.180.127.210:2181 --from-beginning
