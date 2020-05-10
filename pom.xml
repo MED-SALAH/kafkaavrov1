@@ -9,8 +9,8 @@
     <version>1.0-SNAPSHOT</version>
     <properties>
         <avro.version>1.9.2</avro.version>
-        <kafka.version>2.2.2</kafka.version>
-        <confluent.version>3.3.1</confluent.version>
+        <kafka.version>5.4.1-ce</kafka.version>
+        <confluent.version>5.4.1</confluent.version>
     </properties>
 
     <dependencies>
@@ -19,16 +19,15 @@
         <dependency>
             <groupId>io.confluent</groupId>
             <artifactId>kafka-avro-serializer</artifactId>
-            <version>${confluent.version}</version>
+            <!-- For Confluent Platform 5.4.2 -->
+            <version>5.4.1</version>
         </dependency>
 
 
-
-        <!-- https://mvnrepository.com/artifact/org.apache.kafka/kafka-clients -->
         <dependency>
             <groupId>org.apache.kafka</groupId>
-            <artifactId>kafka-clients</artifactId>
-            <version>${kafka.version}</version>
+            <artifactId>kafka_2.12</artifactId>
+            <version>5.4.1-ce</version>
         </dependency>
 
 

@@ -38,17 +38,17 @@ public class KafkaAvroProducerv1 {
         );
         System.out.println(producerRecord);
         kafkaProducer.send(producerRecord);
-        kafkaProducer.send(producerRecord, new Callback() {
-            @Override
-            public void onCompletion(RecordMetadata recordMetadata, Exception e) {
-                if (e == null){
-                    System.out.println(recordMetadata);
-                } else {
-                    e.printStackTrace();
-                }
-
-            }
-        });
+//        kafkaProducer.send(producerRecord, new Callback() {
+//            @Override
+//            public void onCompletion(RecordMetadata recordMetadata, Exception e) {
+//                if (e == null){
+//                    System.out.println(recordMetadata);
+//                } else {
+//                    e.printStackTrace();
+//                }
+//
+//            }
+//        });
 
         kafkaProducer.flush();
         kafkaProducer.close();

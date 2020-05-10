@@ -2,7 +2,7 @@ package com.example;
 
 import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
 import io.confluent.kafka.serializers.KafkaAvroSerializer;
-//import org.apache.commons.lang3.SerializationException;
+import org.apache.commons.lang3.SerializationException;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -30,8 +30,8 @@ public class ProducerSimple {
         String message = "bonjour salah bigapps";
         String topic = "test2";
 
-        try (final KafkaProducer<String, String> producer = new KafkaProducer<>(properties)) {
-            for (int i = 0; i < 10; i++) {
+        try (final KafkaProducer<String, String> producer = new KafkaProducer<String, String>(properties)) {
+            for (int i = 0; i < 100; i++) {
                 ProducerRecord<String, String> producerRecord = new ProducerRecord<String, String>(topic,Integer.toString(i), message);
                 producer.send(producerRecord);
                 System.out.println(producerRecord.partition());
@@ -39,7 +39,9 @@ public class ProducerSimple {
             }
             producer.flush();
             System.out.println("Sucessssss ");
-        }catch (final InterruptedException e) {
+        } catch (final SerializationException e) {
+            e.printStackTrace();
+        } catch (final InterruptedException e) {
             e.printStackTrace();
         }
     }

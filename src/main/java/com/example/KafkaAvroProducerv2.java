@@ -1,7 +1,7 @@
 package com.example;
 import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
 import io.confluent.kafka.serializers.KafkaAvroSerializer;
-//import org.apache.commons.lang3.SerializationException;
+import org.apache.commons.lang3.SerializationException;
 import org.apache.kafka.clients.producer.*;
 import org.apache.kafka.common.serialization.StringSerializer;
 
@@ -27,7 +27,7 @@ public class KafkaAvroProducerv2 {
 //        properties.setProperty("schema.registry.url", "http://35.180.127.210:8081");
 
         try (final KafkaProducer<String, EventHeader> producer = new KafkaProducer<>(properties)) {
-            for (int i = 0; i < 10; i++){
+            for (int i = 0; i < 1000; i++){
                 EventHeader eventHeader = new EventHeader(Integer.toString(i),123456789000L,"Code Nomenclature de l'événement",1,2,"version","v1","serveur");
 //                EventHeader eventHeader = EventHeader.newBuilder()
 //                        .setEventId("000012")
@@ -43,12 +43,14 @@ public class KafkaAvroProducerv2 {
                 final ProducerRecord<String, EventHeader> record = new ProducerRecord<>("test",eventHeader.getEventId(),eventHeader);
                 producer.send(record);
                 System.out.println(record);
-                Thread.sleep(1000L);
+                Thread.sleep(100L);
             }
 
             producer.flush();
             System.out.println("Sucessssss ");
 
+        } catch (final SerializationException e) {
+            e.printStackTrace();
         } catch (final InterruptedException e) {
             e.printStackTrace();
         }
