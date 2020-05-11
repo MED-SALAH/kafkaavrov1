@@ -18,14 +18,6 @@ public class KafkaAvroProducerv2 {
         properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class);
         properties.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, "http://35.180.127.210:8081");
 
-//        properties.setProperty("bootstrap.servers","35.180.127.210:9092");
-//        properties.setProperty("acks", "all");
-//        properties.setProperty("retries", "10");
-//
-//        properties.setProperty("key.serializer", StringSerializer.class.getName());
-//        properties.setProperty("value.serializer", KafkaAvroSerializer.class.getName());
-//        properties.setProperty("schema.registry.url", "http://35.180.127.210:8081");
-
         try (final KafkaProducer<String, EventHeader> producer = new KafkaProducer<>(properties)) {
             for (int i = 0; i < 1000; i++){
                 EventHeader eventHeader = new EventHeader(Integer.toString(i),123456789000L,"Code Nomenclature de l'événement",1,2,"version","v1","serveur");

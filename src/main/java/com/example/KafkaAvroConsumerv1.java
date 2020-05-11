@@ -36,8 +36,8 @@ public class KafkaAvroConsumerv1 {
             ConsumerRecords<String, EventHeader> records = kafkaConsumer.poll(1000);
 
             for (ConsumerRecord<String, EventHeader> record : records){
-                EventHeader customer = record.value();
-                System.out.println(customer);
+                EventHeader EventHeader = record.value();
+                System.out.println(EventHeader);
             }
 
             kafkaConsumer.commitSync();
